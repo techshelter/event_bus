@@ -12,7 +12,7 @@ module EventBus
     end
 
     def subscribe(handler)
-      raise CannotRespondToEventError unless can_respond?(handler)
+      raise CannotRespondToEventError, handler.to_s unless can_respond?(handler)
       @klass_handlers << handler  
     end
 
@@ -39,7 +39,7 @@ module EventBus
     end
 
     def can_respond?(handler)
-      @events.one? do |event|
+      resp = @events.any? do |event|
         handler.respond_to?(methods_from_event(event))
       end
     end

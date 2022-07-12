@@ -9,7 +9,7 @@ module EventBus
   class EventNotRegisteredError < StandardError; end
   class NotBlockGivenError < StandardError; end
   # Your code goes here...
-  def self.new
+  def self.init
     Bus.new
   end
 end
